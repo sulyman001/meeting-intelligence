@@ -1,7 +1,7 @@
 import uuid
 from datetime import datetime
 
-from sqlalchemy import DateTime, String, func
+from sqlalchemy import Boolean, DateTime, String, func
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
@@ -17,27 +17,39 @@ class User(Base):
         default=uuid.uuid4,
     )
 
-    clerk_user_id: Mapped[str] = mapped_column(
+    # clerk_user_id: Mapped[str] = mapped_column(
+    #     String(255),
+    #     unique=True,
+    #     nullable=False,
+    #     index=True,
+    # )
+
+    email: Mapped[str] = mapped_column(
         String(255),
         unique=True,
         nullable=False,
         index=True,
     )
 
-    email: Mapped[str] = mapped_column(
+    hashed_password: Mapped[str] = mapped_column(
         String(255),
         nullable=False,
-        index=True,
     )
 
-    first_name: Mapped[str | None] = mapped_column(
+    first_name: Mapped[str] = mapped_column(
         String(100),
-        nullable=True,
+        nullable=False,
     )
 
-    last_name: Mapped[str | None] = mapped_column(
+    last_name: Mapped[str] = mapped_column(
         String(100),
-        nullable=True,
+        nullable=False,
+    )
+
+    is_active: Mapped[bool] = mapped_column(
+        Boolean,
+        default=True,
+        nullable=False,
     )
 
     created_at: Mapped[datetime] = mapped_column(

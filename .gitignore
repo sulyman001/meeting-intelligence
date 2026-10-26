@@ -9,6 +9,7 @@ __pycache__/
 env/
 .coverage
 htmlcov/
+*.pyc
 
 # Node
 node_modules/
@@ -58,3 +59,6 @@ credentials.json
 # Docker/local volumes
 postgres_data/
 redis_data/
+
+# TypeScript build cache
+*.tsbuildinfo
